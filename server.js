@@ -1,4 +1,3 @@
-//const roll = import("./lib/a03-bjhites/lib/roll");
 
 import {roll} from "./lib/roll.js";
 import express from 'express';
@@ -17,11 +16,16 @@ app.get('/app', (req, res, next) => {
 })
 
 app.get('/app/roll', (req, res, next) => {
-	res.json(JSON.stringify(roll(6, 2, 1)));
+	if(req.query != null){
+	res.status(200).send(JSON.stringify(roll(req.query['sides'], req.query['dice'], req.query['rolls'])));
+	}
+	else{
+		res.json(JSON.stringify(roll(6, 2, 1)));
+	}
 })
 
 app.post('/app/roll', (req, res, next) => {
-res.status(200).send(JSON.stringify(roll.roll(req.body.sides, req.body.dice, req.body.rolls)));
+	res.status(200).send(JSON.stringify(roll.roll(req.body.sides, req.body.dice, req.body.rolls)));
  })
 
 app.get('/app/roll/:sides', (req, res, next) => {
@@ -44,10 +48,3 @@ app.listen(port, () => {
 	console.log("Server listening on port: " + port)
 })
 
-app.get('*', function(req, res){
-	res.status(404).send("Not Found");
-})
-
-app.listen(port, () => {
-	console.log("Server listening on port: " + port)
-})
