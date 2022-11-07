@@ -12,7 +12,7 @@ if(args.port != null){
 }
 
 app.get('/app', (req, res, next) => {
-	res.status(200).send('OK');
+	res.status(200).send('200 OK');
 })
 
 app.get('/app/roll', (req, res, next) => {
@@ -36,7 +36,7 @@ app.get('/app/roll', (req, res, next) => {
 // })
 
 app.get('*', function(req, res){
-	res.status(404).send("Not Found");
+	res.status(404).send("404 NOT FOUND");
 })
 
 app.listen(port, () => {
