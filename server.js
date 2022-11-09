@@ -21,7 +21,8 @@ app.get('/app/roll', (req, res, next) => {
 })
 
  app.post('/app/roll', (req, res, next) => {
-	res.status(200).send(JSON.stringify(roll.roll(req.body.sides, req.body.dice, req.body.rolls)));
+	 console.log(req.body);
+	res.status(200).send(JSON.stringify(roll(req.body.sides, req.body.dice, req.body.rolls)));
  })
 
 app.get('/app/roll/:sides', (req, res, next) => {
@@ -36,7 +37,7 @@ app.get('/app/roll/:sides/:dice', (req, res, next) => {
 
 app.get('/app/roll/:sides/:dice/:rolls', (req, res, next) => {
  	res.setHeader("Content-Type", "application/json"); 	
-	res.status(200).send(JSON.stringify(roll(req.params['sides'], req.params['dice'], req.params['rolls'])));
+	res.status(200).send(JSON.stringify(roll(parseInt(req.params['sides']), parseInt(req.params['dice']), parseInt(req.params['rolls']))));
 })
 
 app.get('*', function(req, res){
