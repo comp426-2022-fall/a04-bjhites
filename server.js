@@ -26,12 +26,12 @@ app.get('/app/roll', (req, res, next) => {
 
 app.get('/app/roll/:sides', (req, res, next) => {
  	res.setHeader("Content-Type", "application/json"); 	
-	res.status(200).send(JSON.stringify(roll(req.params['sides'], 2, 1)));
+	res.status(200).send(JSON.stringify(roll(parseInt(req.params['sides']), 2, 1)));
 })
 
 app.get('/app/roll/:sides/:dice', (req, res, next) => {
  	res.setHeader("Content-Type", "application/json"); 	
-	res.status(200).send(JSON.stringify(roll(req.params['sides'], req.params['dice'], 1)));
+	res.status(200).send(JSON.stringify(roll(parseInt(req.params['sides']), parseInt(req.params['dice']), 1)));
 })
 
 app.get('/app/roll/:sides/:dice/:rolls', (req, res, next) => {
