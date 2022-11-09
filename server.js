@@ -24,7 +24,6 @@ app.get('/app/roll', (req, res, next) => {
 })
 
  app.post('/app/roll', (req, res, next) => {
-	console.log(req);
 	res.status(200).send(JSON.stringify(roll(parseInt(req.body.sides), parseInt(req.body.dice), parseInt(req.body.rolls))));
  })
 
