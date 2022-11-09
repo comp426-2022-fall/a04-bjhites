@@ -5,6 +5,9 @@ import minimist from 'minimist';
 
 const app = express()
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 var port = 5000
 const args = minimist(process.argv.slice(2));
 if(args.port != null){
@@ -21,8 +24,8 @@ app.get('/app/roll', (req, res, next) => {
 })
 
  app.post('/app/roll', (req, res, next) => {
-	 console.log(req.query);
-	res.status(200).send(JSON.stringify(roll(req.query.sides, req.query.dice, req.query.rolls)));
+	console.log(req);
+	res.status(200).send(JSON.stringify(roll(parseInt(req.body.sides), parseInt(req.body.dice), parseInt(req.body.rolls))));
  })
 
 app.get('/app/roll/:sides', (req, res, next) => {
